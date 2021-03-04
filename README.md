@@ -153,6 +153,7 @@ https://hub.docker.com/r/tutum/hello-world
 -> Try the below curl command
 > curl http://localhost:<port>/
 
+```
 <html>
 <head>
         <title>Hello world!</title>
@@ -175,7 +176,7 @@ https://hub.docker.com/r/tutum/hello-world
         <h1>Hello world!</h1>
         <h3>My hostname is 97dd670032f9</h3>    </body>
 </html>
-
+```
 
 ------------------------------------------------------------------------------------------------------
 
