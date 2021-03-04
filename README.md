@@ -114,6 +114,20 @@ latest: digest: sha256:f0472aaaf58ebee83aad48ad8ce0ec6606b4493794d9ee5a0268bc783
 
 -> Go to DockerHub and view your image. 
 
+-> Check the list of containers
+> docker ps -a OR docker container ls --all
+<Note the container_id>
+
+-> Stop and remove the containers
+> docker container stop <Container_id>
+> docker container rm <Container_id> or <Container_name>
+
+-> Remove the images
+> docker image rm <image_name>
+
+
+
+
 
 
 Extra:
