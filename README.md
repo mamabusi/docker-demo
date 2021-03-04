@@ -80,6 +80,7 @@ It is in exited state because the container ran and completed its job.
 
 -> Lets try and push this image to Docker Hub.
 > docker push mamabusi/classic
+
 Using default tag: latest
 The push refers to repository [docker.io/mamabusi/classic]
 f930e38f6727: Preparing 
@@ -97,7 +98,12 @@ denied: requested access to the resource is denied
 Observe the error. This is because we have to login to our docker account before pushing. 
 -> Login to docker account
 > docker login
+
 > docker push mamabusi/classic
+
+-> Tag image with the path in docker hub repository
+docker tag <image_name> YOUR_DOCKERHUB_NAME/<image_name>
+
 Using default tag: latest
 The push refers to repository [docker.io/mamabusi/classic]
 f930e38f6727: Pushed 
@@ -116,17 +122,62 @@ latest: digest: sha256:f0472aaaf58ebee83aad48ad8ce0ec6606b4493794d9ee5a0268bc783
 
 -> Check the list of containers
 > docker ps -a OR docker container ls --all
+
 <Note the container_id>
 
 -> Stop and remove the containers
 > docker container stop <Container_id>
+
 > docker container rm <Container_id> or <Container_name>
+
 
 -> Remove the images
 > docker image rm <image_name>
 
 
+### Firing up a Web applcation container
+https://hub.docker.com/r/tutum/hello-world
 
+-> Pull the tutum/hello-world image from docker hub
+> docker pull tutum/hello-world
+
+-> Run the container image on port 80
+> sudo docker run -d -p 80 tutum/hello-world
+<Note the continer_id>
+ 
+-> Fetch the external port
+> sudo docker port <container_id> 80
+
+0.0.0.0:<note the port>
+
+-> Try the below curl command
+> curl http://localhost:<port>/
+
+<html>
+<head>
+        <title>Hello world!</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <style>
+        body {
+                background-color: white;
+                text-align: center;
+                padding: 50px;
+                font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        #logo {
+                margin-bottom: 40px;
+        }
+        </style>
+</head>
+<body>
+        <img id="logo" src="logo.png" />
+        <h1>Hello world!</h1>
+        <h3>My hostname is 97dd670032f9</h3>    </body>
+</html>
+
+
+------------------------------------------------------------------------------------------------------
 
 
 
