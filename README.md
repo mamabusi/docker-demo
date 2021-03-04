@@ -28,7 +28,8 @@ Docker environment is ready to be used.
 > docker ps -a 
 
 -> Build your container
-$ docker build -t <image_name> .
+> docker build -t <image_name> .
+
 <Observe the steps run>
  Sending build context to Docker daemon  3.584kB
 Step 1/3 : FROM python:latest
@@ -55,26 +56,69 @@ Successfully built 8ae9a3d781d5
 Successfully tagged mamabusi/classic:latest
  
 -> Check the list of images now:
-$ docker images
+> docker images
+
 REPOSITORY         TAG       IMAGE ID       CREATED         SIZE
 mamabusi/classic   latest    8ae9a3d781d5   4 minutes ago   885MB
 python             latest    254d4a8a8f31   9 days ago      885MB
 
 -> Check the list of all containers in all states:
-$ docker ps -a 
+> docker ps -a 
 <Still empty because we have only built the image but we have not run it>
   
 -> Run the container now:
-$ docker run mamabusi/classic
+> docker run mamabusi/classic
 Output: Hello! Welcome to the demo on Containers. (Picked from the python code)
 
 ->  Check the list of all containers in all states:
+> docker ps -a
+
 CONTAINER ID   IMAGE              COMMAND              CREATED              STATUS                          PORTS     NAMES
 6dd1bb71562f   mamabusi/classic   "python ./main.py"   About a minute ago   Exited (0) About a minute ago             mystifying_swanson
 
 It is in exited state because the container ran and completed its job. 
 
 -> Lets try and push this image to Docker Hub.
+> docker push mamabusi/classic
+Using default tag: latest
+The push refers to repository [docker.io/mamabusi/classic]
+f930e38f6727: Preparing 
+7d999a918ae9: Preparing 
+5b164865b353: Preparing 
+302cf02dcc7c: Preparing 
+e3d73f29c674: Preparing 
+10bf86ff9f6a: Waiting 
+da654bc8bc80: Waiting 
+4ef81dc52d99: Waiting 
+909e93c71745: Waiting 
+7f03bfe4d6dc: Waiting 
+denied: requested access to the resource is denied
+
+Observe the error. This is because we have to login to our docker account before pushing. 
+-> Login to docker account
+> docker login
+> docker push mamabusi/classic
+Using default tag: latest
+The push refers to repository [docker.io/mamabusi/classic]
+f930e38f6727: Pushed 
+7d999a918ae9: Mounted from library/python 
+5b164865b353: Mounted from library/python 
+302cf02dcc7c: Mounted from library/python 
+e3d73f29c674: Mounted from library/python 
+10bf86ff9f6a: Mounted from library/python 
+da654bc8bc80: Mounted from library/python 
+4ef81dc52d99: Mounted from library/python 
+909e93c71745: Mounted from library/python 
+7f03bfe4d6dc: Mounted from library/python 
+latest: digest: sha256:f0472aaaf58ebee83aad48ad8ce0ec6606b4493794d9ee5a0268bc783514452e size: 2424
+
+-> Go to DockerHub and view your image. 
+
+
+
+Extra:
+-> Running a remote image that is there on dockerhub and then remove off container after exiting :
+docker run --rm -it mamabusi/demo
 
 
 ### List your images:
@@ -103,3 +147,5 @@ $ docker rm $(docker ps -a -q)
 
 ### Display logs of a container:
 $ docker logs [container name]
+
+
