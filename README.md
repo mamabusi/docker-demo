@@ -71,7 +71,8 @@ python             latest    254d4a8a8f31   9 days ago      885MB
 [Still empty because we have only built the image but we have not run it]
   
 -> Run the container now:
-> docker run mamabusi/classic (image_name)
+> docker run [image name]
+> Example: docker run mamabusi/classic
 
 ```
 Output: Hello! Welcome to the demo on Containers. (Picked from the python code)
@@ -87,7 +88,12 @@ CONTAINER ID   IMAGE              COMMAND              CREATED              STAT
 It is in exited state because the container ran and completed its job. 
 
 -> Lets try and push this image to Docker Hub.
+
+-> Tag image with the path in docker hub repository. Skip if existing image tag is already in accordance with registry. 
+> docker tag <image_name> YOUR_DOCKERHUB_NAME/[image_name]
+
 > docker push [image_name]
+> Example: docker push mamabusi/classic
 
 ```
 Using default tag: latest
@@ -109,10 +115,10 @@ Observe the error. This is because we have to login to our docker account before
 -> Login to docker account
 > docker login
 
+-> Now, push it again.
 > docker push [image_name]
+> Example: docker push mamabusi/classic
 
--> Tag image with the path in docker hub repository
-> docker tag <image_name> YOUR_DOCKERHUB_NAME/[image_name]
 
 ```
 Using default tag: latest
