@@ -205,8 +205,9 @@ https://hub.docker.com/r/tutum/hello-world
 
 
 Additional Commands:
+
 -> Running a remote image that is there on dockerhub and then remove off container after exiting :
-> docker run --rm -it mamabusi/demo
+> docker run --rm -it [image_name]
 
 
 -> List your images:
